@@ -1,18 +1,14 @@
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
-import React, {PropsWithChildren} from 'react';
+import React from 'react';
 import Separator from './Separator';
-import {addItemToCart, CartProduct} from '../redux/slices/cartSlice';
+import {addItemToCart} from '../redux/slices/cartSlice';
 
 import {useDispatch} from 'react-redux';
 
-type ProductProps = PropsWithChildren<{
-  product: Product;
-}>;
-
-const ProductItem = ({product}: ProductProps) => {
+const ProductItem = ({product}) => {
   const dispatch = useDispatch();
 
-  const handleAddToCart = (item: Product) => {
+  const handleAddToCart = item => {
     dispatch(addItemToCart(item));
   };
 
@@ -44,7 +40,7 @@ const ProductItem = ({product}: ProductProps) => {
           />
         </View>
       </View>
-      <Separator />
+      {/* <Separator /> */}
     </View>
   );
 };
@@ -53,10 +49,17 @@ export default ProductItem;
 
 const styles = StyleSheet.create({
   mainContainer: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    marginVertical: 8,
     marginHorizontal: 8,
+    elevation: 4,
+    shadowColor: '#000000',
+    shadowOffset: {width: 2, height: 2},
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
   },
   mainRowStyle: {
-    backgroundColor: 'white',
     flexDirection: 'row',
     marginVertical: 10,
   },
@@ -65,6 +68,7 @@ const styles = StyleSheet.create({
     width: 150,
     resizeMode: 'contain',
     marginHorizontal: 8,
+    borderRadius: 8,
   },
   descriptionColumnStyle: {
     flexDirection: 'column',

@@ -9,13 +9,9 @@ import Home from './screens/Home';
 import Details from './screens/Details';
 import {Provider} from 'react-redux';
 import store from './redux/store';
+import Header from './components/Header';
 
-export type RootStackParamList = {
-  Home: undefined;
-  Details: {product: Product};
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
 const App = (): JSX.Element => {
   return (
@@ -23,7 +19,12 @@ const App = (): JSX.Element => {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Home"
-          screenOptions={{headerShown: true}}>
+          screenOptions={{
+            headerShown: true,
+            // header: Header,
+            statusBarStyle: 'auto',
+            headerRight: () => <Header />,
+          }}>
           <Stack.Screen
             name="Home"
             component={Home}
